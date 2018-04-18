@@ -38,7 +38,7 @@ button {
   outline: none;
 }
 
-nav {
+.main-nav {
   position: absolute;
   display: flex;
   width: 100%;
@@ -48,18 +48,18 @@ nav {
   top: 0;
 }
 
-nav .title, nav .more, .popin-element .title, .intro-container .title {
+.main-nav .title, .main-nav .more, .popin-element .title, .intro-container .title {
   position: absolute;
   font-size: 50px;
   font-weight: bold;
   top: 10px;
 }
 
-nav .title, .popin-element .title, .intro-container .title {
+.main-nav .title, .popin-element .title, .intro-container .title {
   left: 5%;
 }
 
-nav .more {
+.main-nav .more {
   left: calc(52% + 30px);
   color: #EDEDED;
 }
@@ -80,7 +80,7 @@ nav .more {
   width: 48%;
 }
 
-nav ul {
+.main-nav ul {
   position: absolute;
   width: 50%;
   height: 100%;
@@ -110,17 +110,17 @@ nav ul {
   color: #EDEDED;
 }
 
-nav ul li a {
+.main-nav ul li a {
   text-decoration: none;
 }
 
-nav .first-list li span, nav ul li a {
+.main-nav .first-list li span, .main-nav ul li a {
   display: inline-block;
   transition: transform ease-out .3s;
   transform: translate3d(0, 0, 0);
 }
 
-nav .first-list li span:hover, nav ul li a:hover {
+.main-nav .first-list li span:hover, .main-nav ul li a:hover {
   color: #CABA90;
   transform: translate3d(20px, 0, 0);
 }
@@ -239,6 +239,46 @@ nav .first-list li span:hover, nav ul li a:hover {
 
 .contact-container a:nth-child(2) {
   margin: 0 10px;
+}
+
+/* shortcut nav */
+
+.shortcut-nav {
+  position: absolute;
+  height: 120px;
+  top: calc(50% - 60px);
+  right: 0;
+  width: 30px;
+  z-index: 100;
+}
+
+.shortcut-nav a {
+  display: flex;
+  height: 30px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.shortcut-nav a::after {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  top: 12px;
+  right: 0;
+  background-color: black;
+  content: '';
+  transform: translateX(15px);  
+  transition: all .2s ease-out;
+}
+
+.shortcut-nav a:hover::after {
+  transform: translateX(0)
+}
+
+.shortcut-nav a.router-link-active::after {
+  background-color:  rgb(202, 186, 144);
+  transform: translateX(0)
 }
 
 /* Intro style */
@@ -364,6 +404,7 @@ img {
   justify-content: center;
   height: 100%;
   width: 100%;
+  pointer-events: none;
 }
 
 .list-title-line {
@@ -386,6 +427,7 @@ img {
   overflow: hidden;
   transform: translate3d(0, 0, 0);
   transition: color ease-out .1s, transform ease-out .3s;
+  pointer-events: visible;
 }
 
 .list-title-line span:hover, .list-title-line a:hover {

@@ -30,6 +30,7 @@
     </button>
 
     <nav
+      class="main-nav"
       ref="navMenu" >
       <div 
         class="left-background"

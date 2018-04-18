@@ -4,11 +4,19 @@
     <NavComp :callConst="callConst"/>
     <!-- <FirstSection :data="data"/> -->
     <transition 
-    :duration="{ enter: 0, leave: 1000 }"
+    :duration="{ enter: 0, leave: 950 }"
     mode="out-in"
     v-on:leave="dispatchLeave">
       <router-view :leave="leave" :data="data" :key="data[0].type"/>
-    </transition>   
+    </transition>
+    <nav class="shortcut-nav">
+        <ul>
+          <li><router-link to="about" @click.native="addActive"></router-link></li>
+          <li><router-link to="commercials" @click.native="addActive"></router-link></li>
+          <li><router-link to="music" @click.native="addActive"></router-link></li>
+          <li><router-link to="reviews" @click.native="addActive"></router-link></li>
+        </ul>
+      </nav>   
   </div>
 </template>
 
@@ -36,12 +44,6 @@ export default {
       this.$data.data = Constant.filter(item => item.type === category.toLowerCase());
       console.log(this.$data.data[0].path);
     },
-
-    // pushUrl: function (string) {
-    //   let currentPathname = this.$route.path;
-    //   console.log(this.$route);
-    //   this.$router.push(currentPathname + '/' + string);
-    // },
 
     stateInitialisation: function () {
       let regex = /(commercials|music)/;

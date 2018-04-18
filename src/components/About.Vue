@@ -44,6 +44,18 @@
   export default {
     name: 'About',
     methods: {
+      openAbout: function() {
+        anime({
+          targets: [this.$refs.englishFirstP, this.$refs.englishLastP, this.$refs.frenchFirstP, this.$refs.frenchLastP],
+          opacity: {
+            value: [0, 1],
+            delay: 600,
+            duration: 500,
+            easing: 'linear'
+          }
+        })
+      },
+
       showFrench: function () {
         if(this.$refs.frenchButton.hasAttribute('class') && this.$refs.frenchButton.classList.contains('active')) {
           return false;
@@ -93,6 +105,9 @@
           offset: '-=180'
         })
       }
+    },
+    mounted: function() {
+      this.openAbout()
     }
   }
 </script>
