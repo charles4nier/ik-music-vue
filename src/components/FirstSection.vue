@@ -8,8 +8,9 @@
       <div 
         class="img-filter"
         ref="imgFilter">
+        <!-- <img :src="src" alt=""/> -->
       </div>
-      <img :src="data[0].path" alt=""/>
+      <img :src="data[0].path" alt="" ref="picture"/>
       <div class="img-mask"></div>
     </div>
     <p ref="text" >{{data[0].type}}</p>
@@ -21,12 +22,7 @@
 
   export default {
     name: 'FirstSection',
-    props: ['data', 'leave'],
-    // data() {
-    //   return {
-    //     leave: this.$props.leave
-    //   }
-    // },
+    props: ['data', 'leave', 'src', 'setSrc'],
     methods: {
       openSection: function () {
         anime.timeline()
@@ -58,8 +54,18 @@
             duration: 600,
             easing: 'easeOutSine'
           },
-          offset: '-=550'
+          offset: '-=550',
+          complete: () => {
+            this.$props.setSrc(this.$props.data[0].path) 
+          }
         })
+        .add({
+          targets: this.$refs.picture,
+          translateX: ['-5%', 0],
+          duration: 1800,
+          easing: [0.645, 0.045, 0.355, 1],
+          offset: '-=1830'
+        })  
       },
       closeSection: function() {
         anime.timeline()
@@ -84,8 +90,15 @@
               duration: 700,
               easing: [0.645, 0.045, 0.355, 1]
             },
-            offset: '-=530'
-          })  
+            offset: '-=730'
+          })
+        .add({
+          targets: this.$refs.picture,
+          translateX: [0, '12%'],
+          duration: 1400,
+          easing: [.7,.39,.36,.99], 
+          offset: '-=800'
+        })    
       }
     },
     mounted: function () {

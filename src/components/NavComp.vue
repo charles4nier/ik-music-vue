@@ -51,29 +51,25 @@
       <ul 
         class="first-list"
         ref="firstUl">
-        <li 
-          ref="firstLi"
-         @click="closeMenu" 
-          >
-            <span>about</span>
+        <li ref="firstLi">
+          <router-link 
+            to="about"
+            @click.native="closeMenu">about</router-link>
         </li>
-        <li 
-          ref="secondLi"
-         @click="closeMenu"
-          >
-            <span>commercials</span>
+        <li ref="secondLi">
+          <router-link 
+            to="commercials"
+            @click.native="closeMenu">commercials</router-link>
         </li>
-        <li 
-          ref="thirdLi"
-         @click="closeMenu"
-          >
-            <span>music</span>
+        <li ref="thirdLi">
+          <router-link 
+            to="music"
+            @click.native="closeMenu">music</router-link>
         </li>
-        <li 
-          ref="fourthLi"
-         @click="closeMenu"
-          >
-            <span>reviews</span>
+        <li ref="fourthLi">
+          <router-link
+            to="reviews"
+            @click.native="closeMenu">reviews</router-link>
         </li>
       </ul>
       <ul 
@@ -367,11 +363,11 @@ export default {
       })
     },
     
-    closeMenu: function(event) {
-      let category = event.currentTarget;
-      if(!category.classList.contains('close-button')) {
-        this.$router.push(category.textContent)
-      }
+    closeMenu: function() {
+      // let category = event.currentTarget;
+      // if(!category.classList.contains('close-button')) {
+      //   this.$router.push(category.textContent)
+      // }
       // if(category.textContent !== "close") {
       //   this.$router.push(category.textContent)
       // }

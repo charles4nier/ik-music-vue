@@ -10,8 +10,13 @@
         {{data[0].type}}
     </p>
     <About v-if="showAbout"/> 
-    <ListItems v-if="showListItems" :data="data"/>
-    <Reviews v-if="showReviews"/>   
+    <ListItems v-if="showListItems" :data="data" :title="title" :videoToDispatch="videoToDispatch"/>
+    <Reviews v-if="showReviews"/>
+    <transition
+      mode="out-in"
+      :duration="{enter:0, leave: 2000}">
+      <router-view :data="data" :title="title"></router-view>
+    </transition>   
   </section>  
 </template>
 
@@ -23,7 +28,7 @@
 
   export default {
     name: 'LastSection',
-    props: ['data'],
+    props: ['data', 'title', 'videoToDispatch'],
     components: {
       'About': About,
       'ListItems': ListItems,
@@ -89,7 +94,7 @@
               duration: 700,
               easing: [0.645, 0.045, 0.355, 1]
             },
-            offset: '-=850'
+            offset: '-=650'
           }) 
         }
     },

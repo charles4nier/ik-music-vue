@@ -106,6 +106,10 @@ button {
   left: 50%;
 }
 
+.first-list li a {
+  color: black;
+}
+
 .last-list li a {
   color: #EDEDED;
 }
@@ -114,13 +118,17 @@ button {
   text-decoration: none;
 }
 
-.main-nav .first-list li span, .main-nav ul li a {
+.main-nav ul li a {
   display: inline-block;
-  transition: transform ease-out .3s;
+  transition: all ease-out .3s;
   transform: translate3d(0, 0, 0);
 }
 
 .main-nav .first-list li span:hover, .main-nav ul li a:hover {
+  transform: translate3d(20px, 0, 0);
+}
+
+.first-list li a.router-link-active {
   color: #CABA90;
   transform: translate3d(20px, 0, 0);
 }
@@ -146,7 +154,7 @@ button {
   z-index: 350;
 }
 
-.open-button span  {
+.open-button span, .close-button span  {
   color: rgb(202, 186, 144);
   font-style: italic;
 }
@@ -348,16 +356,32 @@ main {
   position: absolute;
   height: 100%;
   width: 100%;
-  background-color:#F8EDD8;
+  background-color:black;
   z-index: 0;
   top: 0;
   left: 0;
+}
+
+.img-filter {
+  background: linear-gradient(to right, #000000, #434343); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .section-filter {
   background-color:white;
   z-index: 2;
 }
+
+.first-section .section-filter {
+  background-color: #F8EDD8;
+}
+
+.last-section .section-filter {
+  background-color: black;
+}
+
+/* .first-section .section-filter {
+  background-color: black;
+} */
 
 img {
   display: block;
@@ -428,6 +452,7 @@ img {
   transform: translate3d(0, 0, 0);
   transition: color ease-out .1s, transform ease-out .3s;
   pointer-events: visible;
+  padding: 0 30px;
 }
 
 .list-title-line span:hover, .list-title-line a:hover {
@@ -531,8 +556,7 @@ img {
 } 
 
 /* popin */
-
-main .last-section .popin-element {
+ .popin-element {
   display: flex;
   position: absolute;
   align-items: center;

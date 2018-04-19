@@ -4,10 +4,14 @@
         v-for="(item, index) in data[0].data"
         class="list-title-line"
         ref="multipleLi"
-        :data-url="item.url"
         :key="index"
         >
-          <span ref="liSpan">{{item.name}}</span>
+          <span 
+            ref="liSpan"
+            :data-url="item.url"
+            @click="loadVideo">
+              {{item.name}}
+          </span>
       </li>
     </ul>
 </template>
@@ -17,7 +21,7 @@ import anime from 'animejs'
 
 export default {
   name: 'ListItems',
-  props: ['data'],
+  props: ['data', 'title', 'videoToDispatch'],
   methods: {
     openList: function() {
       anime({
@@ -35,8 +39,14 @@ export default {
           easing: 'linear'
         }
       })
+    },
+    loadVideo: function(event) {
+      let srcIframe = this.$props.data[0].data.filter(item => item.url === event.currentTarget.dataset.url);
+      this.$props.videoToDispatch(srcIframe);
+      let path = this.$route.path + '/' + srcIframe[0].url;
+      this.$router.push(path);
     }
-  },
+   },
   mounted: function() {
     this.openList();
   }

@@ -2,19 +2,17 @@
   <div id="app">
     <HeaderComp/>
     <NavComp :callConst="callConst"/>
-    <!-- <FirstSection :data="data"/> -->
     <transition 
-    :duration="{ enter: 0, leave: 950 }"
-    mode="out-in"
-    v-on:leave="dispatchLeave">
-      <router-view :leave="leave" :data="data" :key="data[0].type"/>
+    :duration="{ enter: 0, leave: 900 }"
+    mode="out-in">
+      <router-view :leave="leave" :data="data" :key="data[0].type" :title="title" :videoToDispatch="videoToDispatch" :setSrc="setSrc" :src="src"/>
     </transition>
     <nav class="shortcut-nav">
         <ul>
-          <li><router-link to="about" @click.native="addActive"></router-link></li>
-          <li><router-link to="commercials" @click.native="addActive"></router-link></li>
-          <li><router-link to="music" @click.native="addActive"></router-link></li>
-          <li><router-link to="reviews" @click.native="addActive"></router-link></li>
+          <li><router-link to="about"></router-link></li>
+          <li><router-link to="commercials"></router-link></li>
+          <li><router-link to="music"></router-link></li>
+          <li><router-link to="reviews"></router-link></li>
         </ul>
       </nav>   
   </div>
@@ -32,7 +30,8 @@ export default {
     return {
       leave: false,
       data: Constant,
-      title: ''
+      title: '',
+      src: ''
     }
   },
   components: {
@@ -42,7 +41,14 @@ export default {
   methods: {
     callConst: function (category) {
       this.$data.data = Constant.filter(item => item.type === category.toLowerCase());
-      console.log(this.$data.data[0].path);
+    },
+
+    videoToDispatch: function(array) {
+      this.$data.title = array
+    },
+
+    setSrc: function(array) {
+      this.$data.src = array
     },
 
     stateInitialisation: function () {
@@ -57,11 +63,9 @@ export default {
           let urlToDelete = '/' + newCategory + '/';
         
           let newTitle = currentPathname.slice(urlToDelete.length, currentPathname.length);
-
           for(let i = 0; i < Constant.length; i++) {
             if(Constant[i].type === newCategory) {
               this.$data.title = Constant[i].data.filter(item => item.url === newTitle)
-              
             }
           }
         }
@@ -70,15 +74,6 @@ export default {
       }
 
       this.callConst(newCategory);
-    },
-    dispatchLeave: function () {
-      this.$data.leave = true;
-      setTimeout(
-        () =>{
-          this.$data.leave = false;
-          console.log('après le time out ',this.$data.leave);
-        }, 
-        800);
     }
   },
   beforeMount: function () {
@@ -86,18 +81,13 @@ export default {
       this.stateInitialisation();
     } else {
       this.callConst('about');
-      this.$history.push('about');
+      this.$router.push('about');
     }
   },
   watch: {
     '$route' (to, from) {
       this.stateInitialisation();
-    },
-    '$data.leave' (newVal, oldVal) {
-      if(this.$data.leave === true) {
-          console.log('App.vue : data changed: ', newVal, ' | was: ', oldVal)
-        }
-      } 
+    }
   }        
 }
 </script>

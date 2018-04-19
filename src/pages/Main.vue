@@ -1,7 +1,7 @@
 <template>
   <main>
-    <FirstSection :data="data" :leave="leave"/>
-    <LastSection :data="data"/>
+    <FirstSection :data="data" :leave="leave" :setSrc="setSrc" :src="src"/>
+    <LastSection :data="data" :title="title" :videoToDispatch="videoToDispatch"/>
   </main>
 </template>
 
@@ -11,18 +11,10 @@
 
   export default {
     name: 'Main',
-    props: ['data', 'leave'],
+    props: ['data', 'leave', 'title', 'videoToDispatch', 'src', 'setSrc'],
     components: {
       'FirstSection': FirstSection,
       'LastSection': LastSection
-    },
-    mounted: function() {
-      console.log('main ', this.$props.leave)
-    },
-    watch: {
-      leave(newVal, oldVal) {
-        console.log(' Main : Prop changed: ', newVal, ' | was: ', oldVal)
-      } 
     }
   }
 </script>
