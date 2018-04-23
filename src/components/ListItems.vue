@@ -27,16 +27,16 @@ export default {
       anime({
         targets: document.querySelectorAll('.list-title-line'),
         translateY: {
-        value: ['-80px', 0],
-        duration: 1200,
+        value: ['-40px', 0],
+        duration: 600,
         delay: function(el, i) { return i * 100 },
         easing: [0.645, 0.045, 0.355, 1]
         },
         opacity: {
-          value: [0, 1],
-          duration: 100,
-          delay: function(el, i) { return 600 + (i * 100)},
-          easing: 'linear'
+        value: [0, 1],
+        duration: 400,
+        delay: 100,
+        easing: 'linear'
         }
       })
     },
@@ -49,6 +49,17 @@ export default {
    },
   mounted: function() {
     this.openList();
+  },
+  beforeDestroy: function() {
+    anime({
+        targets: document.querySelectorAll('.list-title-line'),
+        opacity: {
+        value: [1, 0],
+        duration: 400,
+        delay: 300,
+        easing: 'linear'
+        }
+      })
   }
 }
 </script>

@@ -27,7 +27,7 @@
         </p>
       </div> 
     </div>   
-    <div class="button-container">
+    <div class="button-container" ref="buttonContainer">
       <button 
         class="active"
         ref="englishButton"
@@ -46,14 +46,42 @@
     methods: {
       openAbout: function() {
         anime({
-          targets: [this.$refs.englishFirstP, this.$refs.englishLastP, this.$refs.frenchFirstP, this.$refs.frenchLastP],
+          targets: [this.$refs.buttonContainer, this.$refs.englishFirstP, this.$refs.englishLastP, this.$refs.frenchFirstP, this.$refs.frenchLastP],
           opacity: {
             value: [0, 1],
-            delay: 600,
-            duration: 500,
+            delay: 100,
+            duration: 900,
             easing: 'linear'
           }
         })
+      },
+
+      closeAbout: function() {
+        anime.timeline()
+        .add({
+          targets: [this.$refs.buttonContainer, this.$refs.englishFirstP, this.$refs.englishLastP, this.$refs.frenchFirstP, this.$refs.frenchLastP],
+          opacity: {
+            value: [1, 0],
+            delay: 100,
+            duration: 600,
+            easing: 'linear'
+          }
+        })
+        // .add({
+        //   targets: this.$refs.buttonContainer,
+        //   translateY: {
+        //     value: [0, '30px'],
+        //     duration: 400,
+        //     offset:'-=400',
+        //     easing: 'linear'
+        //   },
+        //   opacity: {
+        //     value: [1, 0],
+        //     duration: 300,
+        //     easing: 'linear',
+        //     offset:'-=500'
+        //   }
+        // })
       },
 
       showFrench: function () {
@@ -108,6 +136,9 @@
     },
     mounted: function() {
       this.openAbout()
+    },
+    beforeDestroy: function() {
+      this.closeAbout()
     }
   }
 </script>

@@ -111,8 +111,8 @@
         class="contact-container"
         ref="contactContainer">
         <a 
-          href='mailto:Rockmybelleville@gmail.com'
-          ref="email"> Rockmybelleville@gmail.com</a>
+          href='mailto:rockmybelleville@gmail.com'
+          ref="email"> rockmybelleville@gmail.com</a>
         <a 
           href='tel:+33177015617'
           ref="firstNum">(+33)1 77 01 56 17</a> 
@@ -253,10 +253,10 @@ export default {
       })
       .add({
         targets: this.$refs.pMenu,
-        translateY: [0, '85px'],
-        duration: 350,
-        easing: 'easeOutSine',
-        offset: '-=350'
+        translateY: [0, '125px'],
+        duration: 1050,
+        easing: [0.645, 0.045, 0.355, 1],
+        offset: '-=850'
       })
       .add({
         targets:[this.$refs.leftBackground, this.$refs.rightBackground],
@@ -264,35 +264,36 @@ export default {
           value: [0.2, 1],
           delay: function(el, i) { return i * 150 },
           duration: 100,
-          easing: [.47,.17,.04,1]
+          easing: 'linear'
         },
         translateY: {
           value: ['-100%', 0],
           delay: function(el, i) { return i * 250 },
-          duration: 800,
-          easing: [.47,.17,.04,1]
+          duration: 900,
+          easing: [0.645, 0.045, 0.355, 1]
         },
-        offset: '-=650'
+        offset: '-=1200'
       })
       .add({
         targets:[this.$refs.fourthLi, this.$refs.thirdLi, this.$refs.secondLi,this.$refs.firstLi],
         opacity: {
           value: [0, 1],
           duration: 200,
-          easing: 'easeInQuint'
+          easing: 'easeInQuint',
+          delay: function(el, i) { return i * 50 }
         },
         translateY: {
           value: ['0', '50px'],
-          duration: 400,
-          easing: 'easeOutSine'
+          duration: 300,
+          easing: 'easeOutSine',
+          delay: function(el, i) { return i * 80 }
         },
         scaleY: {
-          value: [1.2, 1],
+          value: [1.4, 1],
           duration: 300,
           easing: 'easeOutSine'
         },
-        delay: function(el, i) { return i * 100 },
-        offset: '-=300',
+        offset: '-=700',
       })
       .add({
         targets: this.$refs.navContact,
@@ -301,20 +302,20 @@ export default {
           duration: 200,
           easing: 'easeInQuint'
         },
-        translateX: {
+        translateY: {
           value: ['-85px', 0],
           duration: 400,
           easing: 'easeOutSine'
         },
-        offset: '-=300'
+        offset: '-=400'
       })
       .add({
         targets: this.$refs.pMore,
         opacity: [0, 1],
-        translateY: [0, '85px'],
-        duration: 350,
-        easing: 'easeOutSine',
-        offset: '-=750'
+        translateY: [0, '125px'],
+        duration: 1050,
+        easing: [0.645, 0.045, 0.355, 1],
+        offset: '-=950'
       })
       .add({
         targets:[this.$refs.lastFithLi, this.$refs.lastFourthLi, this.$refs.lastThirdLi, this.$refs.lastSecondtLi,this.$refs.lastFirstLi],
@@ -334,7 +335,7 @@ export default {
           easing: 'easeOutSine'
         },
         delay: function(el, i) { return i * 100 },
-        offset: '-=575',
+        offset: '-=775',
       })
       .add({
         targets: this.$refs.pCredis,
@@ -354,12 +355,12 @@ export default {
           easing: 'linear'
         },
         translateY: {
-          value: ['150px', 0],
-          duration: 500,
+          value: ['-250px', 0],
+          duration: 700,
           delay: function(el, i) { return i * 50 },
           easing: 'easeOutExpo'
         },
-        offset: '-=600'
+        offset: '-=800'
       })
     },
     
@@ -394,16 +395,16 @@ export default {
             easing: 'easeOutSine'
           },
           delay: function(el, i) { return i * 50 },
-          offset: '-=200'
+          offset: '-=300'
         })
         .add({
           targets: this.$refs.pMenu,
           translateY: {
-            value: ['85px', 0],
-            duration: 300,
-            easing: 'easeOutSine'
+            value: ['125px', 0],
+            duration: 550,
+            easing: [0.645, 0.045, 0.355, 1]
           },
-          offset: '-=1150'
+          offset: '-=1000'
         })
         .add({
           targets: this.$refs.pMore,
@@ -413,7 +414,7 @@ export default {
             easing: 'easeOutSine'
           },
           translateY: {
-            value: ['85px', '150px'],
+            value: ['125px', '200px'],
             duration: 300,
             easing: 'easeOutSine'
           },
@@ -424,11 +425,15 @@ export default {
           targets:[this.$refs.leftBackground, this.$refs.rightBackground],
           translateY: {
             value: [0, '100%'],
-            delay: function(el, i) { return i * 150 },
-            duration: 1100,
+            delay: function(el, i) { return 100 + (i * 150)},
+            duration: 650,
             easing: [.47,.17,.04,1]
           },
-          offset: '-=950'
+          offset: '-=650'
+          // opacity: [1, 0],
+          // duration: 200,
+          // easing: 'linear',
+          // offset: '-=650'
         })
         .add({
           targets: this.$refs.openButton,

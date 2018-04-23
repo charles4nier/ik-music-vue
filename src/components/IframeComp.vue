@@ -229,7 +229,8 @@ export default {
         targets: this.$refs.iframeContainer,
         opacity: [1, 0],
         duration: 10,
-        easing: 'linear'
+        easing: 'linear',
+        offset: '-=550'
       })
       .add({
         targets:this.$refs.compoText,
@@ -247,7 +248,7 @@ export default {
           duration: 550,
           easing: 'easeInOutQuad'
         },
-        offset: '-=150'
+        offset: '-=500'
       })
       .add({
         targets: this.$refs.rightFilter,
@@ -256,7 +257,7 @@ export default {
           duration: 550,
           easing: 'easeInOutQuad'
         },
-        offset: '-=550'
+        offset: '-=480'
       })
       .add({
         targets: this.$refs.popin,

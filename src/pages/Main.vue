@@ -1,7 +1,7 @@
 <template>
   <main>
-    <FirstSection :data="data" :leave="leave" :setSrc="setSrc" :src="src"/>
-    <LastSection :data="data" :title="title" :videoToDispatch="videoToDispatch"/>
+    <FirstSection :data="data" :leave="leave" :setSrc="setSrc" :src="src" :fromMenu="fromMenu"/>
+    <LastSection :data="data" :title="title" :videoToDispatch="videoToDispatch" :fromMenu="fromMenu"/>
   </main>
 </template>
 
@@ -11,7 +11,7 @@
 
   export default {
     name: 'Main',
-    props: ['data', 'leave', 'title', 'videoToDispatch', 'src', 'setSrc'],
+    props: ['data', 'leave', 'title', 'videoToDispatch', 'src', 'setSrc', 'fromMenu'],
     components: {
       'FirstSection': FirstSection,
       'LastSection': LastSection

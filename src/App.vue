@@ -3,18 +3,22 @@
     <HeaderComp/>
     <NavComp :callConst="callConst"/>
     <transition 
-    :duration="{ enter: 0, leave: 900 }"
+    :duration="{ enter: 0, leave: 700 }"
     mode="out-in">
-      <router-view :leave="leave" :data="data" :key="data[0].type" :title="title" :videoToDispatch="videoToDispatch" :setSrc="setSrc" :src="src"/>
+      <router-view :setFromMenu="setFromMenu" :fromMenu="fromMenu" :leave="leave" :data="data" :key="data[0].type" :title="title" :videoToDispatch="videoToDispatch" :setSrc="setSrc" :src="src"/>
     </transition>
     <nav class="shortcut-nav">
-        <ul>
-          <li><router-link to="about"></router-link></li>
-          <li><router-link to="commercials"></router-link></li>
-          <li><router-link to="music"></router-link></li>
-          <li><router-link to="reviews"></router-link></li>
-        </ul>
-      </nav>   
+      <ul @mouseleave="hideMouseIndicator">
+        <li @mouseover="setMouseIndicator" @mouseleave="hideMouseIndicator" data-indicator="about"><router-link to="about" ></router-link></li>
+        <li @mouseover="setMouseIndicator" @mouseleave="hideMouseIndicator" data-indicator="commercials"><router-link to="commercials" ></router-link></li>
+        <li @mouseover="setMouseIndicator" @mouseleave="hideMouseIndicator" data-indicator="music"><router-link to="music" ></router-link></li>
+        <li @mouseover="setMouseIndicator" @mouseleave="hideMouseIndicator" data-indicator="reviews"><router-link to="reviews" ></router-link></li>
+      </ul>
+    </nav>   
+    <span class="span-indicator indicator-about"  data-text="go to"><span>about</span></span>
+    <span class="span-indicator indicator-commercials"  data-text="go to"><span>commercials</span></span>
+    <span class="span-indicator indicator-music"  data-text="go to"><span>music</span></span>
+    <span class="span-indicator indicator-reviews"  data-text="go to"><span>reviews</span></span>
   </div>
 </template>
 
@@ -31,7 +35,11 @@ export default {
       leave: false,
       data: Constant,
       title: '',
-      src: ''
+      src: '',
+      fromMenu: 'false',
+      spanIndicator: null,
+      newValue: '',
+      ticker: 0
     }
   },
   components: {
@@ -51,6 +59,27 @@ export default {
       this.$data.src = array
     },
 
+    setFromMenu: function(array) {
+      this.$data.fromMenu = true
+    },
+
+    setMouseIndicator: function(event) {
+      console.log(event.currentTarget.dataset.indicator);
+      document.querySelector('.indicator-' + event.currentTarget.dataset.indicator).classList.add('active');   
+    },
+
+    hideMouseIndicator: function() {
+      document.querySelector('.span-indicator.active').classList.remove('active');
+    },  
+
+    getMouse: function (event){
+			this.$data.mouseX = event.pageX - 120;
+			this.$data.mouseY = event.pageY - 20;
+  
+      this.$refs.spanIndicator.style.left = this.$data.mouseX + "px" ;
+      this.$refs.spanIndicator.style.top = this.$data.mouseY + "px";
+    },
+    
     stateInitialisation: function () {
       let regex = /(commercials|music)/;
       let currentPathname = this.$route.path;
@@ -88,6 +117,26 @@ export default {
     '$route' (to, from) {
       this.stateInitialisation();
     }
+      // },
+    // '$data.spanIndicator'(newVal, oldVal) {
+    //   if(oldVal === null) {
+    //     console.log(newVal)
+    //     this.$refs.spanIndicator.classList.add('active');
+    //     this.$data.newValue = newVal;
+
+    //     return;
+    //   }
+
+    //   if(this.$refs.spanIndicator.classList.contains('active')) {
+    //     this.$refs.spanIndicator.classList.remove('active');
+    //   }
+    //   setTimeout(() => {
+    //     this.$refs.spanIndicator.classList.add('active');
+    //     this.$data.newValue = newVal;
+    //   }, 500);
+
+      
+    // }
   }        
 }
 </script>

@@ -49,8 +49,7 @@
             targets: this.$refs.sectionFilter,
             translateY: [0, '100%'],
             duration: 800,
-            easing: [.32,.22,0,1],
-            delay: 450
+            easing: [.32,.22,0,1]
           })
           .add({
             targets: this.$refs.text,
@@ -67,7 +66,7 @@
               duration: 400,
               easing: 'easeOutSine'
             },
-            offset: '-=530'
+            offset: '-=290'
           })
         },
         closeSection: function() {
@@ -75,9 +74,9 @@
           .add({
             targets: this.$refs.sectionFilter,
             translateY: ['-100%', 0],
-            delay:50,
-            duration: 800,
-            easing: [0.645, 0.045, 0.355, 1]
+            duration: 350,
+            easing: [0.645, 0.045, 0.355, 1],
+            delay: 350
           })
           .add({
             targets: this.$refs.text,

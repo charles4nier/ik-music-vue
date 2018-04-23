@@ -22,14 +22,14 @@
 
   export default {
     name: 'FirstSection',
-    props: ['data', 'leave', 'src', 'setSrc'],
+    props: ['data', 'leave', 'src', 'setSrc', 'fromMenu'],
     methods: {
       openSection: function () {
         anime.timeline()
         .add({
           targets: this.$refs.sectionFilter,
           translateX: [0, '100%'],
-          duration: 1000,
+          duration: 800,
           easing: [.47,.17,.04,1]
         })
         .add({
@@ -61,8 +61,16 @@
         })
         .add({
           targets: this.$refs.picture,
-          translateX: ['-5%', 0],
+          translateX: ['-10%', 0],
           duration: 1800,
+          easing: [0.645, 0.045, 0.355, 1],
+          offset: '-=1830'
+        })  
+        .add({
+          targets: this.$refs.picture,
+          scaleX:[1.05, 1],
+          scaleY: [1.05, 1],
+          duration: 2400,
           easing: [0.645, 0.045, 0.355, 1],
           offset: '-=1830'
         })  
@@ -72,7 +80,7 @@
         .add({
           targets: this.$refs.sectionFilter,
           translateX: ['-100%', 0],
-          duration: 1000,
+          duration: 700,
           easing: [0.645, 0.045, 0.355, 1]
         })
         .add({
@@ -94,10 +102,10 @@
           })
         .add({
           targets: this.$refs.picture,
-          translateX: [0, '12%'],
-          duration: 1400,
-          easing: [.7,.39,.36,.99], 
-          offset: '-=800'
+          translateX: [0, '30%'],
+          duration: 1500,
+          easing: [0.645, 0.045, 0.355, 1],
+          offset: '-=650'
         })    
       }
     },
